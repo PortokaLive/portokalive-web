@@ -1,14 +1,28 @@
 {
-  "name": "ifsc-assignment",
+  "name": "ifscweb",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.19.0",
+    "bootstrap": "^4.3.1",
+    "flv.js": "^1.5.0",
+    "google-maps-react": "^2.0.2",
+    "is-empty": "^1.2.0",
+    "jwt-decode": "^2.2.0",
+    "node-sass": "^4.12.0",
     "react": "^16.9.0",
+    "react-bootstrap": "^1.0.0-beta.12",
+    "react-bootstrap-sidebar": "0.0.1",
     "react-dom": "^16.9.0",
-    "react-scripts": "3.1.1"
+    "react-icons": "^3.7.0",
+    "react-redux": "^7.1.1",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.1.1",
+    "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=3003 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
