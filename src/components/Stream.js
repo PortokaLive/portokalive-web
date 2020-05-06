@@ -36,7 +36,7 @@ class Stream extends React.Component {
 
         return (
             <div>
-                <video ref={this.videoRef} style={{ width: '100%',height:'500px' }} controls={true} />
+                <video ref={this.videoRef} style={{ width: '100%', height: '500px' }} controls={true} />
             </div>
         );
     }

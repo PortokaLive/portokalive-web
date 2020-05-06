@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter,Link } from 'react-router-dom'
 import { Container,Button,Form,Col,Row,Alert } from 'react-bootstrap'
-import styles from "../../assets/css/styles.module.css"
 import logo from '../../assets/img/logo.webp'
 import { registerUser } from '../../actions/authActions'
 import { IoIosCheckmarkCircle } from 'react-icons/io'
@@ -51,8 +50,8 @@ this.props.registerUser(newUser,this.props.history);
 render() {
     const { errors } = this.state;
 return (
-    <Container className={styles.wrapper}>
-        <Col lg={{ span: 6, offset: 3 }} xs={12} className={styles.container}>
+    <Container>
+        <Col lg={{ span: 6, offset: 3 }} xs={12}>
         { errors.alert ? <Alert variant="danger">
        {errors.alert}
        </Alert> : <div></div>}
