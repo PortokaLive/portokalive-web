@@ -5,3 +5,32 @@ $theme-colors: (
 );
 
 @import "~bootstrap/scss/bootstrap.scss";
+
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+}
+
+@mixin glassy-texture--medium {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+@mixin glassy-texture--low {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.background__glassy--medium {
+  @include glassy-texture--medium;
+}
+
+.background__glassy--low {
+  @include glassy-texture--low;
+}
+
+.background__video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}

@@ -1,15 +1,16 @@
 import React from 'react';
-import Register from './components/auth/Register'
-import Login from './components/auth/Login'
-import NotFound from './NotFound'
-import Entry from './components/Entry'
-import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
+import Register from './pages/auth/Register';
+import Login from './pages/auth/Login';
+import NotFound from './NotFound';
+import Entry from './components/Entry';
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from "react-redux";
 import store from "./store";
-import jwt_decode from 'jwt-decode'
-import { setCurrentUser, logoutUser } from './actions/authActions'
-import PrivateRoute from './PrivateRoute'
+import jwt_decode from 'jwt-decode';
+import { setCurrentUser, logoutUser } from './actions/authActions';
+import { PrivateRoute } from './PrivateRoute';
 import './App.scss';
+import { Landing } from './pages/Landing';
 
 if (localStorage.getItem('token')) {
   const token = localStorage.getItem('token') || '';
@@ -28,9 +29,10 @@ function App() {
       <Router>
         <div className="App wrapper">
           <Switch>
-            <PrivateRoute exact path="/" component={Entry} />
+            <Route exact path="/" component={Landing} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
+            <PrivateRoute exact path="/app" component={Entry} />
             <PrivateRoute path='*' component={NotFound} />
           </Switch>
         </div>

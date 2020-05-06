@@ -16,18 +16,16 @@ if (localStorage.getItem('token')) {
     window.location.href = './login'
   }
 }
-class NotFound extends React.Component {
 
-  render() {
-    return (
-      <Container>
-        <Col lg={{ span: 6, offset: 3 }} xs={12}>
-          <h1>4<span>0</span>4</h1>
-          <h2>Page Not Found, <Link to="/">Back to Home</Link></h2>
-        </Col>
-      </Container>
-    )
-  }
+export const NotFound = () => {
+  return (
+    <Container>
+      <Col lg={{ span: 6, offset: 3 }} xs={12}>
+        <h1>4<span>0</span>4</h1>
+        <h2>Page Not Found, <Link to="/">Back to Home</Link></h2>
+      </Col>
+    </Container>
+  );
 }
 
 export default NotFound

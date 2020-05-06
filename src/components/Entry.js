@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import Map from './Map'
 import Live from './Live'
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
-import logo from '../assets/img/logo.webp'
+import logo from '../assets/img/logo.png'
 import { logoutUser, deleteUser, editUser } from '../actions/authActions'
 import store from "../store";
 
