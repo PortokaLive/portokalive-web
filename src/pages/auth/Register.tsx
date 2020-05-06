@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useReducer, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Container, Button, Form, Col, Row, Card } from "react-bootstrap";
-import { loginUser as doLoginUser } from "../../actions/authActions";
-import { FaSignInAlt } from "react-icons/fa";
+import { registerUser } from "../../actions/authActions";
+import { IoIosCheckmarkCircle } from "react-icons/io";
 import { useSelector } from "../../store";
 import { emailRegex } from "../../utils/regex";
 import { LogoImage } from "../../components/LogoImage";
 
-export const Login = ({ history }: any) => {
+export const Register = ({ history }: any) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const auth = useSelector((state) => state.auth);
@@ -65,11 +65,11 @@ export const Login = ({ history }: any) => {
 
   const onSubmit = (e: any) => {
     e.preventDefault();
-    const loginUser = {
-      email,
-      password,
+    const newUser = {
+      email: email,
+      password: password,
     };
-    doLoginUser(loginUser, history);
+    registerUser(newUser, history);
   };
 
   useEffect(() => {
@@ -86,11 +86,11 @@ export const Login = ({ history }: any) => {
           type="video/mp4"
         />
       </video>
-      <Container className="background__glassy--medium background__video d-flex flex-column wrapper justify-content-center align-items-center">
+      <Container className="background__glassy--medium background__video wrapper d-flex flex-column justify-content-center align-items-center">
         <Card className="card__auth p-sm-3 p-md-4 background__glassy--low">
           <LogoImage />
           <span className="text-center h6 font-weight-light">
-            Login to
+            Sign up on
             <br />
             <span className="h2 font-weight-bold">
               <span className="text-primary">Portoka</span>Live
@@ -102,7 +102,7 @@ export const Login = ({ history }: any) => {
                 <Form.Control
                   type="text"
                   placeholder="Enter your email"
-                  defaultValue={email}
+                  value={email}
                   isInvalid={!!errors.email}
                   onChange={onChange}
                   required
@@ -116,8 +116,8 @@ export const Login = ({ history }: any) => {
               <Col>
                 <Form.Control
                   type="password"
-                  placeholder="Enter your password"
-                  defaultValue={password}
+                  placeholder="Enter Password"
+                  value={password}
                   isInvalid={!!errors.password}
                   onChange={onChange}
                   required
@@ -128,17 +128,32 @@ export const Login = ({ history }: any) => {
                 </Form.Control.Feedback>
               </Col>
             </Form.Group>
-            <p>
-              <small>
-                Forgot your <a href="/forgot-password">password</a>?
-              </small>
-            </p>
-            <Button block variant="primary" type="submit" className="mt-4">
-              <FaSignInAlt style={{ fontSize: "20px", marginRight: "10px" }} />
-              Login to Dashboard
+            <Form.Group as={Row} controlId="checkbox">
+              <Col>
+                <small>
+                  <Form.Check
+                    required
+                    type="checkbox"
+                    label={
+                      <>
+                        I agree all the{" "}
+                        <a href="/terms-and-condition" target="__blank">
+                          terms & condition
+                        </a>
+                      </>
+                    }
+                  />
+                </small>
+              </Col>
+            </Form.Group>
+            <Button block variant="primary" type="submit">
+              <IoIosCheckmarkCircle
+                style={{ fontSize: "20px", marginRight: "10px" }}
+              />
+              Register
             </Button>
             <p className="text-center mt-3">
-              No Account Yet? <Link to="/register">Sign up here</Link>{" "}
+              Already have an account? <Link to="/login">Login here</Link>{" "}
             </p>
           </Form>
         </Card>

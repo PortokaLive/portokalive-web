@@ -6,17 +6,21 @@ $theme-colors: (
 
 @import "~bootstrap/scss/bootstrap.scss";
 
-.wrapper {
+@mixin  wrapper {
   width: 100vw;
   height: 100vh;
 }
 
 @mixin glassy-texture--medium {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 148, 25, 0.4);
 }
 
 @mixin glassy-texture--low {
   background-color: rgba(255, 255, 255, 0.9);
+}
+
+.wrapper {
+  @include wrapper;
 }
 
 .background__glassy--medium {
@@ -33,4 +37,12 @@ $theme-colors: (
   bottom: 0;
   min-width: 100%;
   min-height: 100%;
+}
+
+.card__auth {
+  min-width: 330px;
+
+  @media screen and (max-width:426px) {
+    @include wrapper;
+  }
 }

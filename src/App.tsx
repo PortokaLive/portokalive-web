@@ -1,7 +1,7 @@
 import React from 'react';
-import Register from './pages/auth/Register';
+import { Register } from './pages/auth/Register';
 import { Login } from './pages/auth/Login';
-import NotFound from './NotFound';
+import { NotFound } from './NotFound';
 import Entry from './components/Entry';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from "react-redux";
