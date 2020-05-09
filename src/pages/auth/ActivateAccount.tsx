@@ -16,7 +16,7 @@ export const ActivateAccount = ({ history }: any) => {
     } else {
       activateAccount(email, activationCode, history);
     }
-  }, [email, activationCode]);
+  }, [email, activationCode,history]);
 
   useEffect(() => {
     if (error.name && error.message) {
@@ -24,7 +24,7 @@ export const ActivateAccount = ({ history }: any) => {
         history.push("/login");
       }, 1000);
     }
-  }, [error]);
+  }, [error,history]);
 
   return (
     <div className="d-flex flex-column justify-content-center align-items-center wrapper">

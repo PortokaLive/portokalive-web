@@ -19,10 +19,10 @@ export const registerUser = (userData: IAuth, history: any) => {
       const { result: message } = res.data;
       store.dispatch({
         type: GLOBAL_SUCCESS,
-        payload: <ISuccess>{
+        payload: {
           name: "Thank you for registering",
           message,
-        },
+        } as ISuccess,
       });
       history.push("/login");
     })
@@ -82,13 +82,13 @@ export const loginUser = (userData: IAuth, history: any) => {
       if (err.response?.data.error === ACTIVATION_REQUIRED) {
         store.dispatch({
           type: GLOBAL_SUCCESS,
-          payload: <ISuccess>{
+          payload: {
             name: "Sorry",
             message:
               "You have not activated your account yet.<br/>" +
               "Please check your email to activate.<br/><br/>" +
               "<small >Click <a href='/send-activation-email'>here</a> to send another activation email again.</small>",
-          },
+          } as ISuccess,
         });
       } else {
         store.dispatch({
