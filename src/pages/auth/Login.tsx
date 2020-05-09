@@ -21,6 +21,7 @@ export const Login = ({ history }: any) => {
   const [loading, setLoading] = useState(false);
   const auth = useSelector((state) => state.auth);
   const error = useSelector((state) => state.error);
+  const success = useSelector((state) => state.success);
   const inititalError = { email: "", password: "" };
 
   const reducerError = (state: any = inititalError, action: any) => {
@@ -93,7 +94,7 @@ export const Login = ({ history }: any) => {
     setTimeout(() => {
       setLoading(false);
     }, 500);
-  }, [error]);
+  }, [error,success]);
 
   return (
     <>
