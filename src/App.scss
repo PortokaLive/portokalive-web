@@ -6,7 +6,7 @@ $theme-colors: (
 
 @import "~bootstrap/scss/bootstrap.scss";
 
-@mixin  wrapper {
+@mixin wrapper {
   width: 100vw;
   height: 100vh;
 }
@@ -42,7 +42,7 @@ $theme-colors: (
 .card__auth {
   min-width: 330px;
 
-  @media screen and (max-width:426px) {
+  @media screen and (max-width: 426px) {
     @include wrapper;
   }
 }
