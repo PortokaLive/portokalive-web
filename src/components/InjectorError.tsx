@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Alert, Button } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
 import { useSelector } from "../utils/store";
 
 export const ErrorInjector = () => {

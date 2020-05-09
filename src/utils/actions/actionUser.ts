@@ -1,16 +1,30 @@
 import axios from "./Axios";
 import jwt_decode from "jwt-decode";
-import { GLOBAL_ERRORS, SET_CURRENT_USER } from "./Types";
+import {
+  GLOBAL_ERRORS,
+  SET_CURRENT_USER,
+  ACTIVATION_REQUIRED,
+  GLOBAL_SUCCESS,
+} from "./Types";
 import { IAuth } from "../../models/IAuth";
 import store from "../store";
 import { IError } from "../../models/IError";
 import { AxiosError } from "axios";
+import { ISuccess } from "../../models/ISuccess";
 
 export const registerUser = (userData: IAuth, history: any) => {
   axios()
     .post("/user/register", userData)
-    .then(() => {
-      loginUser(userData, history);
+    .then((res) => {
+      const { result: message } = res.data;
+      store.dispatch({
+        type: GLOBAL_SUCCESS,
+        payload: <ISuccess>{
+          name: "Thank you for registering",
+          message,
+        },
+      });
+      history.push("/login");
     })
     .catch((err: AxiosError) => {
       store.dispatch({
@@ -21,6 +35,36 @@ export const registerUser = (userData: IAuth, history: any) => {
           err.response?.data.message
         ),
       });
+    });
+};
+
+export const activateAccount = (
+  email: string,
+  activationCode: string,
+  history: any
+) => {
+  axios()
+    .post("/user/activate", { email, activationCode })
+    .then((res) => {
+      const { token } = res.data;
+      localStorage.setItem("token", token);
+      const decoded = jwt_decode(token);
+      setCurrentUser(decoded);
+      history.push("/");
+    })
+    .catch((err) => {
+      if (err.response?.data.error === ACTIVATION_REQUIRED) {
+        history.push("activate-account/?" + err.response.data.message);
+      } else {
+        store.dispatch({
+          type: GLOBAL_ERRORS,
+          payload: new IError(
+            err.response?.status || 500,
+            err.response?.data.error,
+            err.response?.data.message
+          ),
+        });
+      }
     });
 };
 
@@ -35,14 +79,27 @@ export const loginUser = (userData: IAuth, history: any) => {
       history.push("/");
     })
     .catch((err) => {
-      store.dispatch({
-        type: GLOBAL_ERRORS,
-        payload: new IError(
-          parseInt(err.code ? err.code : "500"),
-          err.response?.data.error,
-          err.response?.data.message
-        ),
-      });
+      if (err.response?.data.error === ACTIVATION_REQUIRED) {
+        store.dispatch({
+          type: GLOBAL_SUCCESS,
+          payload: <ISuccess>{
+            name: "Sorry",
+            message:
+              "You have not activated your account yet.<br/>" +
+              "Please check your email to activate.<br/><br/>" +
+              "<small >Click <a href='/send-activation-email'>here</a> to send another activation email again.</small>",
+          },
+        });
+      } else {
+        store.dispatch({
+          type: GLOBAL_ERRORS,
+          payload: new IError(
+            err.response?.status || 500,
+            err.response?.data.error,
+            err.response?.data.message
+          ),
+        });
+      }
     });
 };
 
@@ -68,7 +125,7 @@ export const deleteUser = (userData: IAuth) => {
       store.dispatch({
         type: GLOBAL_ERRORS,
         payload: new IError(
-          parseInt(err.code ? err.code : "500"),
+          err.response?.status || 500,
           err.response?.data.error,
           err.response?.data.message
         ),

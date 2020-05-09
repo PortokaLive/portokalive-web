@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { Modal } from "react-bootstrap";
+import React from "react";
 import { Register } from "./pages/auth/Register";
 import { Login } from "./pages/auth/Login";
 import { NotFound } from "./NotFound";
@@ -12,7 +11,9 @@ import { setCurrentUser, logoutUser } from "./utils/actions/actionUser";
 import { PrivateRoute } from "./PrivateRoute";
 import "./App.scss";
 import { Landing } from "./pages/Landing";
-import { ErrorInjector } from "./components/ErrorInjector";
+import { ErrorInjector } from "./components/InjectorError";
+import { ActivateAccount } from "./pages/auth/ActivateAccount";
+import { SuccessInjector } from "./components/InjectorSuccess";
 
 if (localStorage.getItem("token")) {
   const token = localStorage.getItem("token") || "";
@@ -28,12 +29,14 @@ if (localStorage.getItem("token")) {
 function App() {
   return (
     <Provider store={store}>
+      <SuccessInjector />
       <ErrorInjector />
       <Router>
         <div className="App wrapper">
           <Switch>
             <Route exact path="/" component={Landing} />
             <Route exact path="/register" component={Register} />
+            <Route exact path="/activate-account" component={ActivateAccount} />
             <Route exact path="/login" component={Login} />
             <PrivateRoute exact path="/app" component={Entry} />
             <PrivateRoute path="*" component={NotFound} />
