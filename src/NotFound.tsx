@@ -2,8 +2,8 @@ import React from 'react'
 import { Container, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
-import store from "./store";
-import { setCurrentUser, logoutUser } from './actions/authActions'
+import store from "./utils/store";
+import { setCurrentUser, logoutUser } from './utils/actions/actionUser'
 
 if (localStorage.getItem('token')) {
   const token = localStorage.getItem('token') || '';

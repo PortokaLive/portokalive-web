@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useReducer } from "react";
 import { Link } from "react-router-dom";
 import { Container, Button, Form, Col, Row, Card } from "react-bootstrap";
-import { loginUser as doLoginUser } from "../../actions/authActions";
+import { loginUser as doLoginUser } from "../../utils/actions/actionUser";
 import { FaSignInAlt } from "react-icons/fa";
-import { useSelector } from "../../store";
+import { useSelector } from "../../utils/store";
 import { emailRegex } from "../../utils/regex";
 import { LogoImage } from "../../components/LogoImage";
 

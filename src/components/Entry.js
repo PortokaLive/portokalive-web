@@ -6,8 +6,8 @@ import Map from './Map'
 import Live from './Live'
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
 import logo from '../assets/img/logo.png'
-import { logoutUser, deleteUser, editUser } from '../actions/authActions'
-import store from "../store";
+import { logoutUser, deleteUser } from '../utils/actions/actionUser'
+import store from "../utils/store";
 
 class Entry extends React.Component {
   state = {
@@ -55,10 +55,6 @@ class Entry extends React.Component {
   deleteUser = e => {
     e.preventDefault();
     store.dispatch(deleteUser({ password: this.state.passwordConfirm }))
-  }
-  editProfile = e => {
-    e.preventDefault();
-    store.dispatch(editUser({ fullname: this.state.fullname, password: this.state.password }))
   }
   logoutUser = () => {
     store.dispatch(logoutUser())

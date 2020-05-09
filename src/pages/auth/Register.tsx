@@ -1,9 +1,9 @@
 import React, { useState, useReducer, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Container, Button, Form, Col, Row, Card } from "react-bootstrap";
-import { registerUser } from "../../actions/authActions";
+import { registerUser } from "../../utils/actions/actionUser";
 import { IoIosCheckmarkCircle } from "react-icons/io";
-import { useSelector } from "../../store";
+import { useSelector } from "../../utils/store";
 import { emailRegex } from "../../utils/regex";
 import { LogoImage } from "../../components/LogoImage";
 
@@ -49,7 +49,7 @@ export const Register = ({ history }: any) => {
     }
   };
 
-  const onChange = (e: any) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     switch (e.target.id) {
       case "email":
         setEmail(e.target.value);
@@ -57,13 +57,13 @@ export const Register = ({ history }: any) => {
         onValidateEmail(e.target.value);
         break;
       case "password":
-        setPassword(e.target.vaue);
+        setPassword(e.target.value);
         onValidate(e.target.id, e.target.value);
         break;
     }
   };
 
-  const onSubmit = (e: any) => {
+  const onSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newUser = {
       email: email,
