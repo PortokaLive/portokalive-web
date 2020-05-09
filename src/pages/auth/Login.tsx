@@ -1,6 +1,14 @@
 import React, { useState, useEffect, useReducer } from "react";
 import { Link } from "react-router-dom";
-import { Container, Button, Form, Col, Row, Card } from "react-bootstrap";
+import {
+  Container,
+  Button,
+  Form,
+  Col,
+  Row,
+  Card,
+  Spinner,
+} from "react-bootstrap";
 import { loginUser as doLoginUser } from "../../utils/actions/actionUser";
 import { FaSignInAlt } from "react-icons/fa";
 import { useSelector } from "../../utils/store";
@@ -10,7 +18,9 @@ import { LogoImage } from "../../components/LogoImage";
 export const Login = ({ history }: any) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const auth = useSelector((state) => state.auth);
+  const error = useSelector((state) => state.error);
   const inititalError = { email: "", password: "" };
 
   const reducerError = (state: any = inititalError, action: any) => {
@@ -49,7 +59,7 @@ export const Login = ({ history }: any) => {
     }
   };
 
-  const onChange = (e: any) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     switch (e.target.id) {
       case "email":
         setEmail(e.target.value);
@@ -57,13 +67,14 @@ export const Login = ({ history }: any) => {
         onValidateEmail(e.target.value);
         break;
       case "password":
-        setPassword(e.target.vaue);
+        setPassword(e.target.value);
         onValidate(e.target.id, e.target.value);
         break;
     }
   };
 
-  const onSubmit = (e: any) => {
+  const onSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
+    setLoading(true);
     e.preventDefault();
     const loginUser = {
       email,
@@ -77,6 +88,12 @@ export const Login = ({ history }: any) => {
       history.push("/app");
     }
   }, [auth, history]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
+  }, [error]);
 
   return (
     <>
@@ -134,7 +151,12 @@ export const Login = ({ history }: any) => {
               </small>
             </p>
             <Button block variant="primary" type="submit" className="mt-4">
-              <FaSignInAlt style={{ fontSize: "20px", marginRight: "10px" }} />
+              {!!loading && (
+                <Spinner animation="border" size="sm" className="mr-2" />
+              )}
+              {!loading && (
+                <FaSignInAlt className="mr-2" style={{ fontSize: "20px" }} />
+              )}
               Login to Dashboard
             </Button>
             <p className="text-center mt-3">

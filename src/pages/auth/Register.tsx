@@ -1,16 +1,26 @@
 import React, { useState, useReducer, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Container, Button, Form, Col, Row, Card } from "react-bootstrap";
+import {
+  Container,
+  Button,
+  Form,
+  Col,
+  Row,
+  Card,
+  Spinner,
+} from "react-bootstrap";
 import { registerUser } from "../../utils/actions/actionUser";
 import { IoIosCheckmarkCircle } from "react-icons/io";
 import { useSelector } from "../../utils/store";
-import { emailRegex } from "../../utils/regex";
+import { emailRegex, passwordRegex } from "../../utils/regex";
 import { LogoImage } from "../../components/LogoImage";
 
 export const Register = ({ history }: any) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const auth = useSelector((state) => state.auth);
+  const error = useSelector((state) => state.error);
   const inititalError = { email: "", password: "" };
 
   const reducerError = (state: any = inititalError, action: any) => {
@@ -49,6 +59,15 @@ export const Register = ({ history }: any) => {
     }
   };
 
+  const onValidatePassword = (value: string) => {
+    if (!passwordRegex.test(value) && value) {
+      setErrors({
+        type: "password",
+        payload: "Password needs to be minimum 8 characters",
+      });
+    }
+  };
+
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     switch (e.target.id) {
       case "email":
@@ -59,11 +78,13 @@ export const Register = ({ history }: any) => {
       case "password":
         setPassword(e.target.value);
         onValidate(e.target.id, e.target.value);
+        onValidatePassword(e.target.value);
         break;
     }
   };
 
   const onSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
+    setLoading(true);
     e.preventDefault();
     const newUser = {
       email: email,
@@ -77,6 +98,12 @@ export const Register = ({ history }: any) => {
       history.push("/app");
     }
   }, [auth, history]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
+  }, [error]);
 
   return (
     <>
@@ -146,10 +173,16 @@ export const Register = ({ history }: any) => {
                 </small>
               </Col>
             </Form.Group>
-            <Button block variant="primary" type="submit">
-              <IoIosCheckmarkCircle
-                style={{ fontSize: "20px", marginRight: "10px" }}
-              />
+            <Button disabled={loading} block variant="primary" type="submit">
+              {!!loading && (
+                <Spinner animation="border" size="sm" className="mr-2" />
+              )}
+              {!loading && (
+                <IoIosCheckmarkCircle
+                  className="mr-2"
+                  style={{ fontSize: "20px" }}
+                />
+              )}
               Register
             </Button>
             <p className="text-center mt-3">

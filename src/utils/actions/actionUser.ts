@@ -3,17 +3,23 @@ import jwt_decode from "jwt-decode";
 import { GLOBAL_ERRORS, SET_CURRENT_USER } from "./Types";
 import { IAuth } from "../../models/IAuth";
 import store from "../store";
+import { IError } from "../../models/IError";
+import { AxiosError } from "axios";
 
 export const registerUser = (userData: IAuth, history: any) => {
   axios()
     .post("/user/register", userData)
-    .then((res) => {
+    .then(() => {
       loginUser(userData, history);
     })
-    .catch((err) => {
+    .catch((err: AxiosError) => {
       store.dispatch({
         type: GLOBAL_ERRORS,
-        payload: err.response.data.message,
+        payload: new IError(
+          err.response?.status || 500,
+          err.response?.data.error,
+          err.response?.data.message
+        ),
       });
     });
 };
@@ -31,7 +37,11 @@ export const loginUser = (userData: IAuth, history: any) => {
     .catch((err) => {
       store.dispatch({
         type: GLOBAL_ERRORS,
-        payload: err.response.data.message,
+        payload: new IError(
+          parseInt(err.code ? err.code : "500"),
+          err.response?.data.error,
+          err.response?.data.message
+        ),
       });
     });
 };
@@ -51,14 +61,17 @@ export const logoutUser = () => {
 export const deleteUser = (userData: IAuth) => {
   axios()
     .delete("/user/me", { data: userData })
-    .then((res) => {
+    .then(() => {
       logoutUser();
     })
     .catch((err) => {
-      console.log(err);
       store.dispatch({
         type: GLOBAL_ERRORS,
-        payload: err.response.data.message,
+        payload: new IError(
+          parseInt(err.code ? err.code : "500"),
+          err.response?.data.error,
+          err.response?.data.message
+        ),
       });
     });
 };

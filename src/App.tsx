@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Modal } from "react-bootstrap";
 import { Register } from "./pages/auth/Register";
 import { Login } from "./pages/auth/Login";
 import { NotFound } from "./NotFound";
@@ -11,6 +12,7 @@ import { setCurrentUser, logoutUser } from "./utils/actions/actionUser";
 import { PrivateRoute } from "./PrivateRoute";
 import "./App.scss";
 import { Landing } from "./pages/Landing";
+import { ErrorInjector } from "./components/ErrorInjector";
 
 if (localStorage.getItem("token")) {
   const token = localStorage.getItem("token") || "";
@@ -26,6 +28,7 @@ if (localStorage.getItem("token")) {
 function App() {
   return (
     <Provider store={store}>
+      <ErrorInjector />
       <Router>
         <div className="App wrapper">
           <Switch>
