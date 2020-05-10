@@ -2,13 +2,12 @@ import React from "react";
 import { Container, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import jwt_decode from "jwt-decode";
-import store from "./utils/store";
 import { setCurrentUser, logoutUser } from "./utils/actions/actionUser";
 
 if (localStorage.getItem("token")) {
   const token = localStorage.getItem("token") || "";
   const decoded = jwt_decode<any>(token);
-  store.dispatch(setCurrentUser(decoded));
+  setCurrentUser(decoded);
   const currenDate = Date.now() / 1000;
 
   if (decoded.exp < currenDate) {

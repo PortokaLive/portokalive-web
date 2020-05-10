@@ -4,7 +4,7 @@ import {
   GLOBAL_ERRORS,
   SET_CURRENT_USER,
   ACTIVATION_REQUIRED,
-  GLOBAL_SUCCESS,
+  GLOBAL_SUCCESS
 } from "./Types";
 import { IAuth } from "../../models/IAuth";
 import store from "../store";
@@ -30,7 +30,7 @@ export const registerUser = (userData: IAuth, history: any) => {
       store.dispatch({
         type: GLOBAL_ERRORS,
         payload: new IError(
-          err.response?.status || 500,
+          err.response?.status,
           err.response?.data.error,
           err.response?.data.message
         ),
@@ -38,33 +38,26 @@ export const registerUser = (userData: IAuth, history: any) => {
     });
 };
 
-export const activateAccount = (
-  email: string,
-  activationCode: string,
-  history: any
-) => {
+export const activateAccount = (email: string, activationCode: string) => {
   axios()
     .post("/user/activate", { email, activationCode })
     .then((res) => {
       const { token } = res.data;
       localStorage.setItem("token", token);
       const decoded = jwt_decode(token);
-      setCurrentUser(decoded);
-      history.push("/");
+      setTimeout(() => {
+        setCurrentUser(decoded);
+      }, 1000);
     })
     .catch((err) => {
-      if (err.response?.data.error === ACTIVATION_REQUIRED) {
-        history.push("activate-account/?" + err.response.data.message);
-      } else {
-        store.dispatch({
-          type: GLOBAL_ERRORS,
-          payload: new IError(
-            err.response?.status || 500,
-            err.response?.data.error,
-            err.response?.data.message
-          ),
-        });
-      }
+      store.dispatch({
+        type: GLOBAL_ERRORS,
+        payload: new IError(
+          err.response?.status,
+          err.response?.data.error,
+          err.response?.data.message
+        ),
+      });
     });
 };
 
@@ -94,7 +87,7 @@ export const loginUser = (userData: IAuth, history: any) => {
         store.dispatch({
           type: GLOBAL_ERRORS,
           payload: new IError(
-            err.response?.status || 500,
+            err.response?.status,
             err.response?.data.error,
             err.response?.data.message
           ),
@@ -104,10 +97,10 @@ export const loginUser = (userData: IAuth, history: any) => {
 };
 
 export const setCurrentUser = (user: any) => {
-  return {
+  store.dispatch({
     type: SET_CURRENT_USER,
     payload: user,
-  };
+  });
 };
 
 export const logoutUser = () => {
@@ -125,7 +118,7 @@ export const deleteUser = (userData: IAuth) => {
       store.dispatch({
         type: GLOBAL_ERRORS,
         payload: new IError(
-          err.response?.status || 500,
+          err.response?.status,
           err.response?.data.error,
           err.response?.data.message
         ),

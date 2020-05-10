@@ -18,7 +18,7 @@ import { SuccessInjector } from "./components/InjectorSuccess";
 if (localStorage.getItem("token")) {
   const token = localStorage.getItem("token") || "";
   const decoded = jwt_decode<any>(token);
-  store.dispatch(setCurrentUser(decoded));
+  setCurrentUser(decoded);
   const currenDate = Date.now() / 1000;
 
   if (decoded.exp < currenDate) {
