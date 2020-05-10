@@ -8,7 +8,7 @@ export const Home = ({ history }: any) => {
     <Router>
       <div className="App wrapper">
         <Navbar className="shadow-sm" bg="light" fixed="top" expand="lg">
-          <Navbar.Brand href="/" className="d-flex align-items-center">
+          <Navbar.Brand href="/app" className="d-flex align-items-center">
             <img
               src={logo}
               width="40"

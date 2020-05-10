@@ -10,7 +10,7 @@ export const checkPreviousSession = () => {
 
     if (decoded.exp < currenDate) {
       logoutUser();
-      window.location.href = "./login";
+      window.location.href = "/login";
     }
   }
 };
