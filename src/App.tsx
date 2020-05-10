@@ -1,32 +1,24 @@
 import React from "react";
+import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
+import { Provider } from "react-redux";
+import { checkPreviousSession } from "./utils/session";
+import store from "./utils/store";
+
+//** JSX Components **//
 import { Register } from "./pages/auth/Register";
 import { Login } from "./pages/auth/Login";
 import { NotFound } from "./NotFound";
-import Entry from "./components/Entry";
-import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
-import { Provider } from "react-redux";
-import store from "./utils/store";
-import jwt_decode from "jwt-decode";
-import { setCurrentUser, logoutUser } from "./utils/actions/actionUser";
 import { PrivateRoute } from "./PrivateRoute";
-import "./App.scss";
 import { Landing } from "./pages/Landing";
 import { ErrorInjector } from "./components/InjectorError";
 import { ActivateAccount } from "./pages/auth/ActivateAccount";
 import { SuccessInjector } from "./components/InjectorSuccess";
 import { SendActivation } from "./pages/auth/SendActivation";
+import { Home } from "./pages/app/Home";
+import "./App.scss";
 
-if (localStorage.getItem("token")) {
-  const token = localStorage.getItem("token") || "";
-  const decoded = jwt_decode<any>(token);
-  setCurrentUser(decoded);
-  const currenDate = Date.now() / 1000;
+checkPreviousSession();
 
-  if (decoded.exp < currenDate) {
-    logoutUser();
-    window.location.href = "./login";
-  }
-}
 function App() {
   return (
     <Provider store={store}>
@@ -40,7 +32,7 @@ function App() {
             <Route exact path="/activate-account" component={ActivateAccount} />
             <Route exact path="/send-activation" component={SendActivation} />
             <Route exact path="/login" component={Login} />
-            <PrivateRoute exact path="/app" component={Entry} />
+            <PrivateRoute exact path="/app" component={Home} />
             <PrivateRoute path="*" component={NotFound} />
           </Switch>
         </div>
