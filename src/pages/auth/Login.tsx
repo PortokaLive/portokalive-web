@@ -104,7 +104,7 @@ export const Login = ({ history }: any) => {
       </video>
       <Container className="background__glassy--medium background__video d-flex flex-column wrapper justify-content-center align-items-center">
         <Card className="card__auth p-sm-3 p-md-4 background__glassy--low">
-          <LogoImage />
+          <LogoImage width={150} />
           <span className="text-center h6 font-weight-light">
             Login to
             <br />

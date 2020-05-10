@@ -116,7 +116,7 @@ export const Register = ({ history }: any) => {
       </video>
       <Container className="background__glassy--medium background__video wrapper d-flex flex-column justify-content-center align-items-center">
         <Card className="card__auth p-sm-3 p-md-4 background__glassy--low">
-          <LogoImage />
+          <LogoImage width={150} />
           <span className="text-center h6 font-weight-light">
             Sign up on
             <br />
