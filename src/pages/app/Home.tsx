@@ -1,6 +1,6 @@
 import React from "react";
 import { Navbar } from "react-bootstrap";
-import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
+import { Switch, BrowserRouter as Router } from "react-router-dom";
 import logo from "../../assets/img/logo.png";
 
 export const Home = ({ history }: any) => {

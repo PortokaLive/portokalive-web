@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import { checkPreviousSession } from "./utils/session";
@@ -17,9 +17,8 @@ import { SendActivation } from "./pages/auth/SendActivation";
 import { Home } from "./pages/app/Home";
 import "./App.scss";
 
-checkPreviousSession();
+export const App = ({ history }: any) => {
 
-function App() {
   return (
     <Provider store={store}>
       <SuccessInjector />
@@ -27,18 +26,15 @@ function App() {
       <Router>
         <div className="App wrapper">
           <Switch>
-            <Route exact path="/" component={Landing} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/activate-account" component={ActivateAccount} />
             <Route exact path="/send-activation" component={SendActivation} />
             <Route exact path="/login" component={Login} />
             <PrivateRoute exact path="/app" component={Home} />
-            <PrivateRoute path="*" component={NotFound} />
+            <Route path="*" component={NotFound} />
           </Switch>
         </div>
       </Router>
     </Provider>
   );
-}
-
-export default App;
+};
