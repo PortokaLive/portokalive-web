@@ -4,7 +4,7 @@ import {
   GLOBAL_ERRORS,
   SET_CURRENT_USER,
   ACTIVATION_REQUIRED,
-  GLOBAL_SUCCESS
+  GLOBAL_SUCCESS,
 } from "./Types";
 import { IAuth } from "../../models/IAuth";
 import store from "../store";
@@ -27,6 +27,30 @@ export const registerUser = (userData: IAuth, history: any) => {
       history.push("/login");
     })
     .catch((err: AxiosError) => {
+      store.dispatch({
+        type: GLOBAL_ERRORS,
+        payload: new IError(
+          err.response?.status,
+          err.response?.data.error,
+          err.response?.data.message
+        ),
+      });
+    });
+};
+
+export const sendActivationEmail = (email: string) => {
+  axios()
+    .post("/user/sendActivationEmail", { email })
+    .then((res) => {
+      store.dispatch({
+        type: GLOBAL_SUCCESS,
+        payload: {
+          name: `Thank you`,
+          message: `Another activation email has been sent to ${email}`,
+        } as ISuccess,
+      });
+    })
+    .catch((err) => {
       store.dispatch({
         type: GLOBAL_ERRORS,
         payload: new IError(
@@ -80,7 +104,7 @@ export const loginUser = (userData: IAuth, history: any) => {
             message:
               "You have not activated your account yet.<br/>" +
               "Please check your email to activate.<br/><br/>" +
-              "<small >Click <a href='/send-activation-email'>here</a> to send another activation email again.</small>",
+              `<small >Click <a href='/send-activation?email=${userData.email}' target='_blank'>here</a> to send another activation email again.</small>`,
           } as ISuccess,
         });
       } else {

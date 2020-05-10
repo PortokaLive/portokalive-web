@@ -14,6 +14,7 @@ import { Landing } from "./pages/Landing";
 import { ErrorInjector } from "./components/InjectorError";
 import { ActivateAccount } from "./pages/auth/ActivateAccount";
 import { SuccessInjector } from "./components/InjectorSuccess";
+import { SendActivation } from "./pages/auth/SendActivation";
 
 if (localStorage.getItem("token")) {
   const token = localStorage.getItem("token") || "";
@@ -37,6 +38,7 @@ function App() {
             <Route exact path="/" component={Landing} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/activate-account" component={ActivateAccount} />
+            <Route exact path="/send-activation" component={SendActivation} />
             <Route exact path="/login" component={Login} />
             <PrivateRoute exact path="/app" component={Entry} />
             <PrivateRoute path="*" component={NotFound} />
