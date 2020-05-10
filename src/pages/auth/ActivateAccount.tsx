@@ -31,7 +31,7 @@ export const ActivateAccount = ({ history }: any) => {
     if (!!auth.isAuthenticated) {
       setTimeout(() => {
         history.push("/app");
-      }, 2000);
+      }, 1000);
     }
   }, [auth.isAuthenticated, history]);
 

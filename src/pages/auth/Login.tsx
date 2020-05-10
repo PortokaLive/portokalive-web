@@ -91,10 +91,8 @@ export const Login = ({ history }: any) => {
   }, [auth, history]);
 
   useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 500);
-  }, [error,success]);
+    setLoading(false);
+  }, [error, success]);
 
   return (
     <>

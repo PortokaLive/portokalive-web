@@ -12,9 +12,7 @@ export const ErrorInjector = () => {
 
   useEffect(() => {
     if (error.name && error.message) {
-      setTimeout(() => {
-        setShowError(true);
-      }, 500);
+      setShowError(true);
     }
   }, [error]);
 

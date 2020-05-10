@@ -12,9 +12,7 @@ export const SuccessInjector = () => {
 
   useEffect(() => {
     if (success.name && success.message) {
-      setTimeout(() => {
-        setShow(true);
-      }, 500);
+      setShow(true);
     }
   }, [success]);
 
