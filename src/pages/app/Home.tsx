@@ -1,24 +1,15 @@
-import React from "react";
-import { Switch, BrowserRouter as Router } from "react-router-dom";
+import React, { useEffect, useRef } from "react";
+import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
 import { Header } from "../../components/Header";
+import { LiveStreamGrid } from "./LiveStreamGrid";
 
 export const Home = () => {
-  const myMediaSource = new MediaSource();
-  const url = URL.createObjectURL(myMediaSource);
-
   return (
     <Router>
-      <div className="App wrapper">
-        <Header />
-        <div>
-          <video
-            src={url}
-            controls={true}
-            width="1000"
-            height="auto"
-          />
-        </div>
-      </div>
+      <Header />
+      <Switch>
+        <Route path="/" component={LiveStreamGrid} />
+      </Switch>
     </Router>
   );
 };
