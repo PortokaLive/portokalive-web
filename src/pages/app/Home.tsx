@@ -10,7 +10,7 @@ export const Home = () => {
       <Header />
       <Switch>
         <Route exact path="/app" component={LiveStreamGrid} />
-        <Route exact path="/:streamerId" component={LiveStreamView} />
+        <Route exact path="/app/:streamerId" component={LiveStreamView} />
       </Switch>
     </Router>
   );
