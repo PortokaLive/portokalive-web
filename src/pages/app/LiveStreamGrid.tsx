@@ -1,44 +1,88 @@
 import React, { useEffect, useState } from "react";
+import { getMediaServerUrl, getToken } from "../../utils/constants";
 
-export const LiveStreamGrid = () => {
+export const LiveStreamGrid = ({ history }: any) => {
   const [streamers, setStreamers] = useState<any[]>([]);
-  const [listening, setListening] = useState(false);
+  const [loading, setLoading] = useState(false);
   const updateStreamers = (streams: any[]) => {
     setStreamers([...streams]);
   };
+  const mediaServerUrl = getMediaServerUrl();
+  const token = getToken();
+
+  const handleCardClick = (streamerId: string) => {
+    history.push(`/app/${streamerId}`);
+  };
 
   useEffect(() => {
-    if (!listening) {
-      const events = new EventSource(
-        "http://localhost:8000/sse/streams?sseKey=4Jp2Q3RyIu"
-      );
+    setLoading(true);
+    const events = new EventSource(
+      `${mediaServerUrl}sse/streams?token=${token}`
+    );
 
-      events.onmessage = (event) => {
-        console.log(JSON.parse(event.data));
-        updateStreamers(JSON.parse(event.data));
-      };
-    }
-    setListening(true);
-  }, [listening, streamers]);
+    events.onopen = () => {
+      console.log("Live stream list is loading");
+      setLoading(false);
+    };
+
+    events.onmessage = (event) => {
+      updateStreamers(JSON.parse(event.data));
+    };
+
+    return () => {
+      console.log("Live stream list is closed");
+      events.close();
+    };
+  }, []);
 
   return (
     <>
       <div className="row no-gutters mt-5 pt-5 overflow-hidden">
-        {streamers.map((value, index) => {
-          return (
-            <div className="col-sm-6 p-2" key={index}>
-              <div className="card">
-                <img
-                  className="card-img-top"
-                  src={value.thumbnail}
-                  alt="Live stream thumbnail"
-                />
-                <div className="card-body"></div>
-                <div className="card-footer text-muted">{value.name}</div>
+        {!!!streamers.length && loading && (
+          <div className="d-flex flex-column h-70 justify-content-center align-items-center w-100">
+            <img
+              style={{ maxWidth: 330 }}
+              src={require("../../assets/img/live_loading.svg")}
+            />
+            <h2>Hmm..Who is broadcasting now?</h2>
+          </div>
+        )}
+        {!!!streamers.length && !loading && (
+          <div className="d-flex flex-column h-70 justify-content-center align-items-center w-100">
+            <img
+              style={{ maxWidth: 330 }}
+              src={require("../../assets/img/live_empty.svg")}
+            />
+            <h2>No one is broadcasting.</h2>
+          </div>
+        )}
+        {streamers &&
+          !!streamers.length &&
+          streamers.map((value, index) => {
+            return (
+              <div className="col-sm-6 col-md-4 col-lg-4 p-2" key={index}>
+                <div
+                  className="card pointer border-primary"
+                  onClick={() => {
+                    handleCardClick(value.publisher);
+                  }}
+                >
+                  <div className="card-body justify-content-center d-flex">
+                    <img
+                      style={{ maxWidth: 150 }}
+                      src={require("../../assets/img/live_thumbnail.svg")}
+                    />
+                  </div>
+                  <div className="card-footer text-muted d-flex p-1">
+                    <div className="col-8">{value.publisher}</div>
+                    <div className="col-4">
+                      {value.subscribers.length} Viewing
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
     </>
   );
