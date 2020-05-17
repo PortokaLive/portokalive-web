@@ -37,7 +37,7 @@ export const LiveStreamGrid = ({ history }: any) => {
       console.log("Live stream list is closed");
       events.close();
     };
-  }, []);
+  }, [mediaServerUrl, token]);
 
   return (
     <>
@@ -45,6 +45,7 @@ export const LiveStreamGrid = ({ history }: any) => {
         {!!!streamers.length && loading && (
           <div className="d-flex flex-column h-70 justify-content-center align-items-center w-100">
             <img
+              alt="loading"
               style={{ maxWidth: 330 }}
               src={require("../../assets/img/live_loading.svg")}
             />
@@ -55,6 +56,7 @@ export const LiveStreamGrid = ({ history }: any) => {
           <div className="d-flex flex-column h-70 justify-content-center align-items-center w-100">
             <img
               style={{ maxWidth: 330 }}
+              alt="empty"
               src={require("../../assets/img/live_empty.svg")}
             />
             <h2>No one is broadcasting.</h2>
@@ -74,6 +76,7 @@ export const LiveStreamGrid = ({ history }: any) => {
                   <div className="card-body justify-content-center d-flex">
                     <img
                       style={{ maxWidth: 150 }}
+                      alt="thumbnail"
                       src={require("../../assets/img/live_thumbnail.svg")}
                     />
                   </div>

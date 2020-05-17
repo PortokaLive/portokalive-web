@@ -1,21 +1,22 @@
 import React, { useEffect, useState, useRef } from "react";
-import { getMediaServerUrl, getToken } from "../../utils/constants";
+import { getMediaServerUrl } from "../../utils/constants";
 import flv from "flv.js";
 
 export const LiveStreamView = ({ history, match }: any) => {
   const videoRef = useRef<any>(null);
   const [loading, setLoading] = useState(true);
   const [ended, setEnded] = useState(0);
+  const { streamerId } = match.params;
 
   useEffect(() => {
     const player = flv.createPlayer({
       type: "flv",
-      url: `${getMediaServerUrl()}live/${match.params.streamerId}.flv`,
+      url: `${getMediaServerUrl()}live/${streamerId}.flv`,
     });
 
     player.attachMediaElement(videoRef.current);
     player.load();
-  }, []);
+  }, [streamerId]);
 
   useEffect(() => {
     if (videoRef.current) {
@@ -32,7 +33,7 @@ export const LiveStreamView = ({ history, match }: any) => {
         }, 1000);
       };
     }
-  }, [videoRef.current]);
+  }, []);
 
   useEffect(() => {
     if (ended) {
@@ -43,7 +44,7 @@ export const LiveStreamView = ({ history, match }: any) => {
         history.push("/app");
       }, 2000);
     }
-  }, [ended]);
+  }, [ended, history]);
 
   return (
     <>
