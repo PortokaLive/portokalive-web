@@ -17,7 +17,7 @@ export const LiveStreamGrid = ({ history }: any) => {
   useEffect(() => {
     setLoading(true);
     const events = new EventSource(
-      `${mediaServerUrl}sse/streams?token=${token}`
+      `${mediaServerUrl}/sse/streams?token=${token}`
     );
 
     events.onopen = () => {
