@@ -11,7 +11,7 @@ export const LiveStreamView = ({ history, match }: any) => {
   useEffect(() => {
     const player = flv.createPlayer({
       type: "flv",
-      url: `${getMediaServerUrl()}live/${streamerId}.flv`,
+      url: `${getMediaServerUrl()}/live/${streamerId}.flv`,
     });
 
     player.attachMediaElement(videoRef.current);
@@ -25,7 +25,7 @@ export const LiveStreamView = ({ history, match }: any) => {
         setLoading(false);
         let timeCounter = 0;
         const timer = setInterval(() => {
-          if (timeCounter > video.currentTime) {
+          if (timeCounter > video.currentTime+1) {
             setEnded(1);
             clearInterval(timer);
           }
@@ -71,7 +71,7 @@ export const LiveStreamView = ({ history, match }: any) => {
             height: "100vh",
             background: "black",
           }}
-          controls={true}
+          controls={false}
           autoPlay={true}
         />
       }
