@@ -6,6 +6,14 @@ export const getMediaServerUrl = () => {
   }
 };
 
+export const getAPI = () => {
+  if (process.env.REACT_APP_ENVIRONMENT === "PROD") {
+    return `${process.env.REACT_APP_BACKEND_URL_PROD}/${process.env.REACT_APP_BACKEND_VERSION_PROD}`;
+  } else {
+    return `${process.env.REACT_APP_BACKEND_URL_DEV}/${process.env.REACT_APP_BACKEND_VERSION_DEV}`;
+  }
+};
+
 export const getToken = () => {
   return localStorage.getItem("token")?.replace("Bearer ", "") || "";
 };

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getMediaServerUrl, getToken } from "../../utils/constants";
+import { getToken, getAPI } from "../../utils/constants";
 
 export const LiveStreamGrid = ({ history }: any) => {
   const [streamers, setStreamers] = useState<any[]>([]);
@@ -7,7 +7,7 @@ export const LiveStreamGrid = ({ history }: any) => {
   const updateStreamers = (streams: any[]) => {
     setStreamers([...streams]);
   };
-  const mediaServerUrl = getMediaServerUrl();
+  const mediaServerUrl = getAPI();
   const token = getToken();
 
   const handleCardClick = (streamerId: string) => {
@@ -23,6 +23,10 @@ export const LiveStreamGrid = ({ history }: any) => {
     events.onopen = () => {
       console.log("Live stream list is loading");
       setLoading(false);
+    };
+
+    events.onerror = (event) => {
+      console.log(event);
     };
 
     events.onmessage = (event) => {
