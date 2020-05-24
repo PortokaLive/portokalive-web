@@ -40,7 +40,7 @@ export const LiveStreamView = ({ history, match }: any) => {
         });
         let timeCounter = 0;
         const timer = setInterval(() => {
-          if (timeCounter >= 15 && timeCounter >= video_A.currentTime - 2) {
+          if (timeCounter >= 20 && timeCounter >= video_A.currentTime - 2) {
             setLoad_B(true);
             setLoad_A(false);
             clearInterval(timer);
@@ -75,7 +75,7 @@ export const LiveStreamView = ({ history, match }: any) => {
         });
         let timeCounter = 0;
         const timer = setInterval(() => {
-          if (timeCounter >= 15 && timeCounter >= video_B.currentTime - 2) {
+          if (timeCounter >= 20 && timeCounter >= video_B.currentTime - 2) {
             setLoad_A(true);
             setLoad_B(false);
             clearInterval(timer);
