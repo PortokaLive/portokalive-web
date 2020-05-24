@@ -19,7 +19,7 @@ export const LiveStreamView = ({ history, match }: any) => {
       player_A.attachMediaElement(videoRef_A.current);
       player_A.load();
       player_A.on("error", () => {
-        history.push("/");
+        history.push("/app");
       });
 
       const video_A: HTMLVideoElement = videoRef_A.current;
@@ -29,7 +29,7 @@ export const LiveStreamView = ({ history, match }: any) => {
         });
         let timeCounter = 0;
         const timer = setInterval(() => {
-          if (timeCounter >= 10 && timeCounter >= video_A.currentTime - 2) {
+          if (timeCounter >= 60 && timeCounter >= video_A.currentTime) {
             setLoad_B(true);
             setLoad_A(false);
             clearInterval(timer);
@@ -53,7 +53,7 @@ export const LiveStreamView = ({ history, match }: any) => {
       player_B.attachMediaElement(videoRef_B.current);
       player_B.load();
       player_B.on("error", () => {
-        history.push("/");
+        history.push("/app");
       });
 
       const video_B: HTMLVideoElement = videoRef_B.current;
@@ -63,7 +63,7 @@ export const LiveStreamView = ({ history, match }: any) => {
         });
         let timeCounter = 0;
         const timer = setInterval(() => {
-          if (timeCounter >= 10 && timeCounter >= video_B.currentTime - 2) {
+          if (timeCounter >= 60 && timeCounter >= video_B.currentTime) {
             setLoad_A(true);
             setLoad_B(false);
             clearInterval(timer);
