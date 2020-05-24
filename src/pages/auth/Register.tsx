@@ -104,94 +104,96 @@ export const Register = ({ history }: any) => {
     setTimeout(() => {
       setLoading(false);
     }, 500);
-  }, [error,success]);
+  }, [error, success]);
 
   return (
     <>
-      <video className="background__video" autoPlay muted loop>
-        <source
-          src={require("../../assets/img/background.mp4")}
-          type="video/mp4"
-        />
-      </video>
-      <Container className="background__glassy--medium background__video wrapper d-flex flex-column justify-content-center align-items-center">
-        <Card className="card__auth p-sm-3 p-md-4 background__glassy--low">
-          <LogoImage width={150} />
-          <span className="text-center h6 font-weight-light">
-            Sign up on
-            <br />
-            <span className="h2 font-weight-bold">
-              <span className="text-primary">Portoka</span>Live
+      <div className="background__image">
+        <video className="background__video" autoPlay muted loop>
+          <source
+            src={require("../../assets/img/background.mp4")}
+            type="video/mp4"
+          />
+        </video>
+        <Container className="background__glassy--medium background__video wrapper d-flex flex-column justify-content-center align-items-center">
+          <Card className="card__auth p-sm-3 p-md-4 background__glassy--low">
+            <LogoImage width={150} />
+            <span className="text-center h6 font-weight-light">
+              Sign up on
+              <br />
+              <span className="h2 font-weight-bold">
+                <span className="text-primary">Portoka</span>Live
+              </span>
             </span>
-          </span>
-          <Form onSubmit={onSubmit} className="mt-2">
-            <Form.Group as={Row} controlId="email">
-              <Col>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter your email"
-                  value={email}
-                  isInvalid={!!errors.email}
-                  onChange={onChange}
-                  required
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors.email}
-                </Form.Control.Feedback>
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row} controlId="password">
-              <Col>
-                <Form.Control
-                  type="password"
-                  placeholder="Enter Password"
-                  value={password}
-                  isInvalid={!!errors.password}
-                  onChange={onChange}
-                  required
-                  autoComplete="true"
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors.password}
-                </Form.Control.Feedback>
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row} controlId="checkbox">
-              <Col>
-                <small>
-                  <Form.Check
+            <Form onSubmit={onSubmit} className="mt-2">
+              <Form.Group as={Row} controlId="email">
+                <Col>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter your email"
+                    value={email}
+                    isInvalid={!!errors.email}
+                    onChange={onChange}
                     required
-                    type="checkbox"
-                    label={
-                      <>
-                        I agree all the{" "}
-                        <a href="/terms-and-condition" target="__blank">
-                          terms & condition
-                        </a>
-                      </>
-                    }
                   />
-                </small>
-              </Col>
-            </Form.Group>
-            <Button disabled={loading} block variant="primary" type="submit">
-              {!!loading && (
-                <Spinner animation="border" size="sm" className="mr-2" />
-              )}
-              {!loading && (
-                <IoIosCheckmarkCircle
-                  className="mr-2"
-                  style={{ fontSize: "20px" }}
-                />
-              )}
-              Register
-            </Button>
-            <p className="text-center mt-3">
-              Already have an account? <Link to="/login">Login here</Link>{" "}
-            </p>
-          </Form>
-        </Card>
-      </Container>
+                  <Form.Control.Feedback type="invalid">
+                    {errors.email}
+                  </Form.Control.Feedback>
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row} controlId="password">
+                <Col>
+                  <Form.Control
+                    type="password"
+                    placeholder="Enter Password"
+                    value={password}
+                    isInvalid={!!errors.password}
+                    onChange={onChange}
+                    required
+                    autoComplete="true"
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.password}
+                  </Form.Control.Feedback>
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row} controlId="checkbox">
+                <Col>
+                  <small>
+                    <Form.Check
+                      required
+                      type="checkbox"
+                      label={
+                        <>
+                          I agree all the{" "}
+                          <a href="/terms-and-condition" target="__blank">
+                            terms & condition
+                          </a>
+                        </>
+                      }
+                    />
+                  </small>
+                </Col>
+              </Form.Group>
+              <Button disabled={loading} block variant="primary" type="submit">
+                {!!loading && (
+                  <Spinner animation="border" size="sm" className="mr-2" />
+                )}
+                {!loading && (
+                  <IoIosCheckmarkCircle
+                    className="mr-2"
+                    style={{ fontSize: "20px" }}
+                  />
+                )}
+                Register
+              </Button>
+              <p className="text-center mt-3">
+                Already have an account? <Link to="/login">Login here</Link>{" "}
+              </p>
+            </Form>
+          </Card>
+        </Container>
+      </div>
     </>
   );
 };

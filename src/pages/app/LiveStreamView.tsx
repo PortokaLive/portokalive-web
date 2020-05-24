@@ -1,14 +1,24 @@
 import React, { useEffect, useState, useRef } from "react";
 import { getAPI, getToken } from "../../utils/constants";
 import flv from "flv.js";
+import { Spinner } from "react-bootstrap";
 
 export const LiveStreamView = ({ history, match }: any) => {
   const videoRef_A = useRef<any>(null);
   const videoRef_B = useRef<any>(null);
+  const [loading, setLoading] = useState(true);
   const [load_A, setLoad_A] = useState(true);
   const [load_B, setLoad_B] = useState(false);
   const [show, setShow] = useState("A");
   const { streamerId } = match.params;
+
+  useEffect(() => {
+    if(!load_A && !load_B) {
+      setTimeout(() => {
+        history.push("/app");
+      },5000);
+    }
+  },[load_A,load_B,history])
 
   useEffect(() => {
     if (load_A) {
@@ -24,12 +34,13 @@ export const LiveStreamView = ({ history, match }: any) => {
 
       const video_A: HTMLVideoElement = videoRef_A.current;
       video_A.onplaying = () => {
+        setLoading(false);
         setImmediate(() => {
           setShow("A");
         });
         let timeCounter = 0;
         const timer = setInterval(() => {
-          if (timeCounter >= 20 && timeCounter >= video_A.currentTime - 2) {
+          if (timeCounter >= 15 && timeCounter >= video_A.currentTime - 2) {
             setLoad_B(true);
             setLoad_A(false);
             clearInterval(timer);
@@ -58,12 +69,13 @@ export const LiveStreamView = ({ history, match }: any) => {
 
       const video_B: HTMLVideoElement = videoRef_B.current;
       video_B.onplaying = () => {
+        setLoading(false);
         setImmediate(() => {
           setShow("B");
         });
         let timeCounter = 0;
         const timer = setInterval(() => {
-          if (timeCounter >= 20 && timeCounter >= video_B.currentTime -2) {
+          if (timeCounter >= 15 && timeCounter >= video_B.currentTime - 2) {
             setLoad_A(true);
             setLoad_B(false);
             clearInterval(timer);
@@ -80,32 +92,38 @@ export const LiveStreamView = ({ history, match }: any) => {
 
   return (
     <>
-      {
-        <video
-          hidden={show !== "A"}
-          ref={videoRef_A}
-          style={{
-            width: "100vw",
-            height: "100vh",
-            background: "black",
-          }}
-          controls={false}
-          autoPlay={true}
-        />
-      }
-      {
-        <video
-          hidden={show !== "B"}
-          ref={videoRef_B}
-          style={{
-            width: "100vw",
-            height: "100vh",
-            background: "black",
-          }}
-          controls={false}
-          autoPlay={true}
-        />
-      }
+      {loading && (
+        <div className="d-flex flex-column justify-content-center align-items-center wrapper">
+          <Spinner
+            style={{ width: "70px", height: "70px", fontSize: "30px" }}
+            variant="primary"
+            animation="border"
+          />
+        </div>
+      )}
+
+      <video
+        hidden={loading || show !== "A"}
+        ref={videoRef_A}
+        style={{
+          width: "100vw",
+          height: "100vh",
+          marginTop: "65px",
+        }}
+        controls={false}
+        autoPlay={true}
+      />
+      <video
+        hidden={loading || show !== "B"}
+        ref={videoRef_B}
+        style={{
+          width: "100vw",
+          height: "100vh",
+          marginTop: "65px",
+        }}
+        controls={false}
+        autoPlay={true}
+      />
     </>
   );
 };

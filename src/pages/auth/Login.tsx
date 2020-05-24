@@ -96,74 +96,76 @@ export const Login = ({ history }: any) => {
 
   return (
     <>
-      <video className="background__video" autoPlay muted loop>
-        <source
-          src={require("../../assets/img/background.mp4")}
-          type="video/mp4"
-        />
-      </video>
-      <Container className="background__glassy--medium background__video d-flex flex-column wrapper justify-content-center align-items-center">
-        <Card className="card__auth p-sm-3 p-md-4 background__glassy--low">
-          <LogoImage width={150} />
-          <span className="text-center h6 font-weight-light">
-            Login to
-            <br />
-            <span className="h2 font-weight-bold">
-              <span className="text-primary">Portoka</span>Live
+      <div className="background__image">
+        <video className="background__video" autoPlay muted loop>
+          <source
+            src={require("../../assets/img/background.mp4")}
+            type="video/mp4"
+          />
+        </video>
+        <Container className="background__glassy--medium background__video d-flex flex-column wrapper justify-content-center align-items-center">
+          <Card className="card__auth p-sm-3 p-md-4 background__glassy--low">
+            <LogoImage width={150} />
+            <span className="text-center h6 font-weight-light">
+              Login to
+              <br />
+              <span className="h2 font-weight-bold">
+                <span className="text-primary">Portoka</span>Live
+              </span>
             </span>
-          </span>
-          <Form onSubmit={onSubmit} className="mt-2">
-            <Form.Group as={Row} controlId="email">
-              <Col>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter your email"
-                  defaultValue={email}
-                  isInvalid={!!errors.email}
-                  onChange={onChange}
-                  required
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors.email}
-                </Form.Control.Feedback>
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row} controlId="password">
-              <Col>
-                <Form.Control
-                  type="password"
-                  placeholder="Enter your password"
-                  defaultValue={password}
-                  isInvalid={!!errors.password}
-                  onChange={onChange}
-                  required
-                  autoComplete="true"
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors.password}
-                </Form.Control.Feedback>
-              </Col>
-            </Form.Group>
-            <p>
-              <small>
-                Forgot your <a href="/forgot-password">password</a>?
-              </small>
-            </p>
-            <Button block variant="primary" type="submit" className="mt-4">
-              {!!loading && (
-                <Spinner animation="border" size="sm" className="mr-2" />
-              )}
-              {!loading && (
-                <FaSignInAlt className="mr-2" style={{ fontSize: "20px" }} />
-              )}
-              Login to Dashboard
-            </Button>
-            <p className="text-center mt-3">
-              No Account Yet? <Link to="/register">Sign up here</Link>{" "}
-            </p>
-          </Form>
-        </Card>
-      </Container>
+            <Form onSubmit={onSubmit} className="mt-2">
+              <Form.Group as={Row} controlId="email">
+                <Col>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter your email"
+                    defaultValue={email}
+                    isInvalid={!!errors.email}
+                    onChange={onChange}
+                    required
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.email}
+                  </Form.Control.Feedback>
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row} controlId="password">
+                <Col>
+                  <Form.Control
+                    type="password"
+                    placeholder="Enter your password"
+                    defaultValue={password}
+                    isInvalid={!!errors.password}
+                    onChange={onChange}
+                    required
+                    autoComplete="true"
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.password}
+                  </Form.Control.Feedback>
+                </Col>
+              </Form.Group>
+              <p>
+                <small>
+                  Forgot your <a href="/forgot-password">password</a>?
+                </small>
+              </p>
+              <Button block variant="primary" type="submit" className="mt-4">
+                {!!loading && (
+                  <Spinner animation="border" size="sm" className="mr-2" />
+                )}
+                {!loading && (
+                  <FaSignInAlt className="mr-2" style={{ fontSize: "20px" }} />
+                )}
+                Login to Dashboard
+              </Button>
+              <p className="text-center mt-3">
+                No Account Yet? <Link to="/register">Sign up here</Link>{" "}
+              </p>
+            </Form>
+          </Card>
+        </Container>
+      </div>
     </>
   );
 };

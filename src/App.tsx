@@ -20,6 +20,7 @@ import { SuccessInjector } from "./components/InjectorSuccess";
 import { SendActivation } from "./pages/auth/SendActivation";
 import { Home } from "./pages/app/Home";
 import "./App.scss";
+import { TermsAndConditions } from "./pages/TermsAndConditions";
 
 checkPreviousSession();
 
@@ -32,6 +33,11 @@ export const App = () => {
         <div className="App wrapper">
           <Switch>
             <Route exact path="/" component={Landing} />
+            <Route
+              exact
+              path="/terms-and-condition"
+              component={TermsAndConditions}
+            />
             <Route exact path="/register" component={Register} />
             <Route exact path="/activate-account" component={ActivateAccount} />
             <Route exact path="/send-activation" component={SendActivation} />

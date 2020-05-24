@@ -131,21 +131,3 @@ export const logoutUser = () => {
   localStorage.removeItem("token");
   setCurrentUser({});
 };
-
-export const deleteUser = (userData: IAuth) => {
-  axios()
-    .delete("/user/me", { data: userData })
-    .then(() => {
-      logoutUser();
-    })
-    .catch((err) => {
-      store.dispatch({
-        type: GLOBAL_ERRORS,
-        payload: new IError(
-          err.response?.status,
-          err.response?.data.error,
-          err.response?.data.message
-        ),
-      });
-    });
-};

@@ -16,9 +16,7 @@ export const LiveStreamGrid = ({ history }: any) => {
 
   useEffect(() => {
     setLoading(true);
-    const events = new EventSource(
-      `${mediaServerUrl}/stream?token=${token}`
-    );
+    const events = new EventSource(`${mediaServerUrl}/stream?token=${token}`);
 
     events.onopen = () => {
       console.log("Live stream list is loading");
@@ -27,10 +25,15 @@ export const LiveStreamGrid = ({ history }: any) => {
 
     events.onerror = (event) => {
       console.log(event);
+      window.location.href = "/app";
     };
 
     events.onmessage = (event) => {
-      updateStreamers(JSON.parse(event.data));
+      if (JSON.parse(event.data)) {
+        updateStreamers(JSON.parse(event.data));
+      } else {
+        updateStreamers([]);
+      }
     };
 
     return () => {
@@ -60,6 +63,7 @@ export const LiveStreamGrid = ({ history }: any) => {
               src={require("../../assets/img/live_empty.svg")}
             />
             <h2>No one is broadcasting.</h2>
+            <a href="/app">Refresh</a>
           </div>
         )}
         {streamers &&
@@ -94,4 +98,3 @@ export const LiveStreamGrid = ({ history }: any) => {
     </>
   );
 };
-
