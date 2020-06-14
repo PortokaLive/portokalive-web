@@ -1,70 +1,81 @@
-# PortokaLive Web Client
+# 🔥Portokalive-web🔥
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+****
 
-## Available Scripts
+<p>Version 0.1.0</p>
+<p>by </p>
 
-In the project directory, you can run:
+<hr/>
+This project is awesome!
 
-### `npm start`
+This project is well tested!
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## ⭐ Public Url
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+This project is not published to public!
 
-### `npm test`
+## 📚 Tech Stack
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This project is using awesome tech stacks!
 
-### `npm run build`
+## 📸 Screenshots
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This project does not have screenshots available.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## 📜 Scripts
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```sh
+start : $ react-scripts start
+build : $ react-scripts build
+test : $ react-scripts test
+eject : $ react-scripts eject
 
-### `npm run eject`
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 🔑 Keywords
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## 👾 Submit issues at
 
-## Learn More
+Visit the repository to open bug reports and issues
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## ©️ License
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+This project does not have a license.
 
-### Code Splitting
+## Dependencies
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+ - @testing-library/jest-dom : $ ^4.2.4
+ - @testing-library/react : $ ^9.3.2
+ - @testing-library/user-event : $ ^7.1.2
+ - axios : $ ^0.19.2
+ - bootstrap : $ ^4.4.1
+ - flv.js : $ ^1.5.0
+ - is-empty : $ ^1.2.0
+ - jwt-decode : $ ^2.2.0
+ - react : $ ^16.13.1
+ - react-bootstrap : $ ^1.0.1
+ - react-dom : $ ^16.13.1
+ - react-icons : $ ^3.10.0
+ - react-redux : $ ^7.2.0
+ - react-router-dom : $ ^5.1.2
+ - react-scripts : $ 3.4.1
+ - redux-thunk : $ ^2.3.0
+ - typescript : $ ^3.8.3
 
-### Analyzing the Bundle Size
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+## Dev Dependencies
 
-### Making a Progressive Web App
+ - @types/is-empty : $ ^1.2.0
+ - @types/jwt-decode : $ ^2.2.1
+ - @types/react-redux : $ ^7.1.8
+ - @types/react-router-dom : $ ^5.1.5
+ - node-sass : $ ^4.14.1
+ - redux-devtools-extension : $ ^2.13.8
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
 
-### Advanced Configuration
+<img src="https://cdn.dribbble.com/users/2401141/screenshots/5487982/developers-gif-showcase.gif"/>
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+<hr/>
+Happy Coding!
