@@ -91,7 +91,9 @@ export const loginUser = (userData: IAuth, history: any) => {
     .then((res) => {
       const { token } = res.data;
       localStorage.setItem("token", token);
-      const decoded = jwt_decode(token);
+      const decoded = jwt_decode<any>(token);
+      
+      localStorage.setItem("api_video_key", decoded?.api_key);
       setCurrentUser(decoded);
       history.push("/");
     })

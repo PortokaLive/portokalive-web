@@ -1,46 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { getToken, getAPI } from "../../utils/constants";
+import { getLiveUsers } from "../../utils/actions/actionLive";
+import { useSelector } from "../../utils/store";
 
 export const LiveStreamGrid = ({ history }: any) => {
-  const [streamers, setStreamers] = useState<any[]>([]);
-  const [loading, setLoading] = useState(false);
-  const updateStreamers = (streams: any[]) => {
-    setStreamers([...streams]);
-  };
-  const mediaServerUrl = getAPI();
-  const token = getToken();
+  const auth = useSelector<any>((state) => state?.auth?.user);
+  const liveList = useSelector((state) => state?.streams.liveList);
+  const [loading] = useState(false);
 
-  const handleCardClick = (streamerId: string) => {
-    history.push(`/app/${streamerId}`);
+  const handleCardClick = (streamerId: string, liveDetails: any) => {
+    history.push(`/app/${streamerId}`, { liveDetails });
   };
 
   useEffect(() => {
-    setLoading(true);
-    const events = new EventSource(`${mediaServerUrl}/stream?token=${token}`);
+    getLiveUsers();
+  }, []);
 
-    events.onopen = () => {
-      console.log("Live stream list is loading");
-      setLoading(false);
-    };
-
-    events.onerror = (event) => {
-      console.log(event);
-      window.location.href = "/app";
-    };
-
-    events.onmessage = (event) => {
-      if (JSON.parse(event.data)) {
-        updateStreamers(JSON.parse(event.data));
-      } else {
-        updateStreamers([]);
-      }
-    };
-
-    return () => {
-      console.log("Live stream list is closed");
-      events.close();
-    };
-  }, [mediaServerUrl, token]);
+  const authName = auth.email.split("@")[0];
+  const streamers = liveList.filter((v) => v.name !== authName);
 
   return (
     <>
@@ -74,9 +50,8 @@ export const LiveStreamGrid = ({ history }: any) => {
                 <div
                   className="card pointer border-primary"
                   onClick={() => {
-                    handleCardClick(value.publisher);
-                  }}
-                >
+                    handleCardClick(value.liveStreamId, value);
+                  }}>
                   <div className="card-body justify-content-center d-flex">
                     <img
                       style={{ maxWidth: 150 }}
@@ -85,10 +60,7 @@ export const LiveStreamGrid = ({ history }: any) => {
                     />
                   </div>
                   <div className="card-footer text-muted d-flex p-1">
-                    <div className="col-8">{value.publisher}</div>
-                    <div className="col-4">
-                      {value.subscribers.length} Viewing
-                    </div>
+                    <div className="col-8">{value.name}</div>
                   </div>
                 </div>
               </div>

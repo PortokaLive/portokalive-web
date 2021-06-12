@@ -14,6 +14,10 @@ export const getAPI = () => {
   }
 };
 
+export const getVideoAPI = () => {
+  return process.env.REACT_APP_API_VIDEO_URL;
+};
+
 export const getToken = () => {
   return localStorage.getItem("token")?.replace("Bearer ", "") || "";
 };
