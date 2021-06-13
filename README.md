@@ -1,9 +1,8 @@
-# 🔥Portokalive-web🔥
+# 🔥PortokaLive Web🔥
 
-****
 
 <p>Version 0.1.0</p>
-<p>by </p>
+<p>by m3yevn</p>
 
 <hr/>
 This project is awesome!
