@@ -68,6 +68,16 @@ body {
   }
 }
 
+.avatar {
+  height: 50px;
+  width: 50px;
+  background-color: theme-color("primary");
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .live-logo {
   padding: 10px;
   border: solid 3px theme-color("light");
