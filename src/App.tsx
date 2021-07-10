@@ -21,6 +21,7 @@ import { SendActivation } from "./pages/auth/SendActivation";
 import { Home } from "./pages/app/Home";
 import "./App.scss";
 import { TermsAndConditions } from "./pages/TermsAndConditions";
+import { PrivacyPolicy } from "./pages/PrivacyPolicy";
 
 checkPreviousSession();
 
@@ -38,6 +39,7 @@ export const App = () => {
               path="/terms-and-condition"
               component={TermsAndConditions}
             />
+            <Route exact path="/privacy-policy" component={PrivacyPolicy} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/activate-account" component={ActivateAccount} />
             <Route exact path="/send-activation" component={SendActivation} />

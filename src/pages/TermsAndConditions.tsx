@@ -11,7 +11,7 @@ export const TermsAndConditions = () => {
 
       <p>
         These terms and conditions outline the rules and regulations for the use
-        of PortokaLive's Website, located at https://portokalive.now.sh/app.
+        of PortokaLive's Website, located at https://portokalive.vercel.app/.
       </p>
 
       <p>
