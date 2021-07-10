@@ -49,5 +49,10 @@
     "@types/react-router-dom": "^5.1.5",
     "node-sass": "^4.14.1",
     "redux-devtools-extension": "^2.13.8"
-  }
+  },
+  "author": "m3yevn",
+  "funFacts": [],
+  "badges": [],
+  "techStacks": [],
+  "screenshots": []
 }
