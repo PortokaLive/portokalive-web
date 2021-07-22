@@ -1,6 +1,7 @@
 {
   "name": "portokalive-web",
-  "version": "0.1.0",
+  "description": "PortokaLive is an open-source experimental platform for broadcasting live stream using free tier hosting of api.video (for development purpose only).",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@style-xper/style-xper-jss": "^1.0.0",
