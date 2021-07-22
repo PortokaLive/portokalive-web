@@ -1,14 +1,15 @@
 import React from "react";
-import { Card, Col, Row } from "react-bootstrap";
+import { Button, Card, Col, Row } from "react-bootstrap";
 import { FaCheckCircle } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
+import { logoutUser } from "../../utils/actions/actionUser";
 import { useSelector } from "../../utils/store";
 
 export const Profile = () => {
   const auth = useSelector<any>((state) => state?.auth?.user);
 
   return (
-    <div className="h-100 d-flex justify-content-center align-items-center">
+    <div className="h-100 d-flex flex-column justify-content-center align-items-center">
       <Card>
         <Card.Body>
           <Card.Title>My Profile</Card.Title>
@@ -50,6 +51,9 @@ export const Profile = () => {
           </Row>
         </Card.Body>
       </Card>
+      <Button className="m-4" onClick={logoutUser}>
+        Logout
+      </Button>
     </div>
   );
 };

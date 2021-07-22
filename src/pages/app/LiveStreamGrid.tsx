@@ -20,7 +20,7 @@ export const LiveStreamGrid = ({ history }: any) => {
 
   return (
     <>
-      <div className="row no-gutters mt-5 pt-5 overflow-hidden">
+      <div className="row no-gutters overflow-hidden">
         {!!!streamers.length && loading && (
           <div className="d-flex flex-column h-70 justify-content-center align-items-center w-100">
             <img

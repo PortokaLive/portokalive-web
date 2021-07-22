@@ -23,9 +23,9 @@ export const LiveStreamView = ({ history, match }: any) => {
   }, [liveDetailString, streamerId]);
 
   return (
-    <div id="liveStream" className="h-100 pt-4">
+    <div id="liveStream" className="h-100">
       <div
-        className="h-100 w-100 mt-5"
+        className="h-100 w-100"
         dangerouslySetInnerHTML={{ __html: liveDetails?.assets?.iframe }}></div>
     </div>
   );

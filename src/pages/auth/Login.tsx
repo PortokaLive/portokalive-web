@@ -103,8 +103,8 @@ export const Login = ({ history }: any) => {
             type="video/mp4"
           />
         </video>
-        <Container className="background__glassy--medium background__video d-flex flex-column wrapper justify-content-center align-items-center">
-          <Card className="card__auth p-sm-3 p-md-4 background__glassy--low">
+        <Container className="p-2 background__glassy--medium background__video d-flex flex-column wrapper justify-content-center align-items-center">
+          <Card className="card__auth p-3 p-md-4 background__glassy--low d-flex flex-column justify-content-center align-items-center">
             <LogoImage width={150} />
             <span className="text-center h6 font-weight-light">
               Login to
@@ -113,7 +113,7 @@ export const Login = ({ history }: any) => {
                 <span className="text-primary">Portoka</span>Live
               </span>
             </span>
-            <Form onSubmit={onSubmit} className="mt-2">
+            <Form onSubmit={onSubmit} className="mt-2 w-100">
               <Form.Group as={Row} controlId="email">
                 <Col>
                   <Form.Control
