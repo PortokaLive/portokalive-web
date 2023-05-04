@@ -3,7 +3,7 @@
 **PortokaLive is an open-source experimental platform for broadcasting live stream using free tier hosting of api.video (for development purpose only).**
 
 <p>Version 1.0.0</p>
-<p>by m3yevn</p>
+<p>by m3yevn </p>
 
 <br/>
 <p>Development has completed.</p>
