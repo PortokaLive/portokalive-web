@@ -172,23 +172,22 @@ export const Landing = ({ history }: any) => {
         <div className={classes.information3}>
           <h4>About</h4>
           <p>
-            We are sorry to inform you in this last section that all the above
-            information are not true and stated there as a proof-of-concept
-            demonstration purpose only.
+            PortokaLive is an open-source live streaming platform focused on rapid
+            deployment, experimentation, and developer accessibility. It provides web
+            and mobile experiences while serving as a foundation for future media and
+            creator-focused innovations.
             <br />
-            In reality, PortokaLive is an open-source experimental platform for
-            broadcasting live stream using free tier hosting of api.video (for
-            development). You can find us{" "}
+            <br />
+            Built with api.video for stream ingest and playback. Find the source on{" "}
             <a href="https://github.com/PortokaLive/portokalive-web/">
-              here on GitHub
+              GitHub
             </a>
             .
             <br />
             <br />
             <span className={classes.textHint}>
-              However, you can use both the web app and mobile app perfectly and
-              also able to use the live streaming if you are not bothered by the
-              watermark of api.video.
+              Web and mobile apps support live streaming workflows. Free-tier api.video
+              may show a development watermark during broadcast.
             </span>
             <br />
             <br />
