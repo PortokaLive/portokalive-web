@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PortokaLive — Docs</title>
+    <meta name="description" content="PortokaLive architecture — web, API, mobile, and api.video integration." />
+    <link rel="canonical" href="https://portokalive.vercel.app/docs" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="/" class="logo">Portoka<strong>Live</strong></a>
+        <nav class="nav"><a href="/">Home</a></nav>
+      </div>
+    </header>
+    <main class="docs-main">
+      <div class="container">
+        <h1>Architecture</h1>
+        <p>Three repos under <a href="https://github.com/PortokaLive">PortokaLive</a> org.</p>
+        <h2>Data flow</h2>
+        <pre>Mobile/Web → portokalive-api (Express) → MongoDB
+                    ↓
+              api.video (live stream create / webhook)</pre>
+        <h2>Repos</h2>
+        <ul>
+          <li><a href="https://github.com/PortokaLive/portokalive-web">portokalive-web</a> — React 16 CRA client</li>
+          <li><a href="https://github.com/PortokaLive/portokalive-api">portokalive-api</a> — REST API + webhooks</li>
+          <li><a href="https://github.com/PortokaLive/portokalive-mobile">portokalive-mobile</a> — React Native</li>
+        </ul>
+        <h2>Rebirth roadmap</h2>
+        <ul>
+          <li>Phase 1 ✅ — Static landing + docs (this site)</li>
+          <li>Phase 2 — Vite + React 18 web refresh</li>
+          <li>Phase 3 — Unified Vercel deploy for API + web</li>
+          <li>Phase 4 — Optional Expo mobile refresh</li>
+        </ul>
+        <h2>Local dev (legacy web)</h2>
+        <pre>cd portokalive-web
+npm install
+npm start</pre>
+        <p>Set API URL in env — see api repo README for MongoDB and api.video keys.</p>
+      </div>
+    </main>
+    <footer class="site-footer"><div class="container"><a href="/">← Back</a></div></footer>
+  </body>
+</html>

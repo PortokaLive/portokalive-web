@@ -1,77 +1,28 @@
-# Portokalive-web
+# PortokaLive — open-source live streaming
 
-**PortokaLive is an open-source experimental platform for broadcasting live stream using free tier hosting of api.video (for development purpose only).**
+**PortokaLive** is an experimental platform for broadcasting live streams — web, API, and mobile clients with api.video integration.
 
-<p>Version 1.0.0</p>
-<p>by m3yevn</p>
+| | |
+|---|---|
+| **Landing** | https://portokalive.vercel.app |
+| **Docs** | [/docs](https://portokalive.vercel.app/docs) |
+| **Org** | [PortokaLive](https://github.com/PortokaLive) |
 
-<br/>
-<p>Development has completed.</p>
+Originally built 2020–2024. Reborn with Eternal Flame static landing (Phase 1).
 
-<hr/>
+## Repos
 
-## ⭐ Public Url
+- **portokalive-web** — React CRA client (this repo)
+- **portokalive-api** — Express + MongoDB
+- **portokalive-mobile** — React Native
 
-N.A
+## Local dev (legacy web app)
 
-## 📚 Tech Stack
-
-N.A
-
-## 📸 Screenshots
-
-N.A
-
-## 📜 Scripts
-
-```sh
-start : $ react-scripts start
-build : $ react-scripts build
-test : $ react-scripts test
-eject : $ react-scripts eject
-
+```bash
+npm install
+npm start
 ```
 
-## 🔑 Keywords
+## License
 
-## 👾 Submit issues at
-
-Visit the repository to open bug reports and issues
-
-## ©️ License
-
-This project does not have a license.
-
-## Dependencies
-
-- @style-xper/style-xper-jss : $ ^1.0.0
-- axios : $ ^0.21.1
-- bootstrap : $ ^4.4.1
-- is-empty : $ ^1.2.0
-- jwt-decode : $ ^2.2.0
-- react : $ ^16.13.1
-- react-bootstrap : $ ^1.0.1
-- react-dom : $ ^16.13.1
-- react-icons : $ ^3.10.0
-- react-redux : $ ^7.2.0
-- react-router-dom : $ ^5.1.2
-- react-scripts : $ 3.4.1
-- redux-thunk : $ ^2.3.0
-- typescript : $ ^3.8.3
-
-## Dev Dependencies
-
-- @testing-library/jest-dom : $ ^4.2.4
-- @testing-library/react : $ ^9.3.2
-- @testing-library/user-event : $ ^7.1.2
-- @types/is-empty : $ ^1.2.0
-- @types/jwt-decode : $ ^2.2.1
-- @types/react-redux : $ ^7.1.8
-- @types/react-router-dom : $ ^5.1.5
-- node-sass : $ ^4.14.1
-- redux-devtools-extension : $ ^2.13.8
-
-<img src="https://cdn.dribbble.com/users/2401141/screenshots/5487982/developers-gif-showcase.gif"/>
-
-<hr/>
-Happy Coding!
+MIT · Kevin Moe Myint Myat

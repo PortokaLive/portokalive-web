@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PortokaLive — Open-source live streaming platform</title>
+    <meta name="description" content="PortokaLive is an experimental open-source live streaming platform — web, API, and mobile clients powered by api.video. Reborn for the Eternal Flame portfolio by Kevin Moe Myint Myat." />
+    <meta name="author" content="Kevin Moe Myint Myat" />
+    <meta name="theme-color" content="#0a0a0a" />
+    <link rel="canonical" href="https://portokalive.vercel.app/" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:title" content="PortokaLive — Live streaming, open source" />
+    <meta property="og:description" content="Broadcast live streams with web, API, and mobile — api.video integration." />
+    <meta property="og:url" content="https://portokalive.vercel.app/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="/" class="logo">Portoka<strong>Live</strong></a>
+        <nav class="nav">
+          <a href="/docs">Docs</a>
+          <a href="https://github.com/PortokaLive/portokalive-web" rel="noopener">Web</a>
+          <a href="https://github.com/PortokaLive/portokalive-api" rel="noopener">API</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <section class="hero">
+        <div class="container">
+          <span class="version-badge">Eternal Flame rebirth — Phase 1</span>
+          <h1>Go live, <span class="accent">open source</span></h1>
+          <p class="hero-lead">
+            Originally built in 2020–2024 as a full-stack streaming experiment — React web, Express API,
+            React Native mobile, and api.video integration. Reimagined with a modern portfolio landing.
+          </p>
+          <p>
+            <a class="btn" href="/docs">Architecture docs</a>
+            <a class="btn btn-outline" href="https://github.com/PortokaLive">GitHub org</a>
+          </p>
+        </div>
+      </section>
+      <section class="features">
+        <div class="container">
+          <h2>Stack</h2>
+          <div class="grid">
+            <article class="card">
+              <h3>portokalive-web</h3>
+              <p>React SPA — auth, live grid, stream viewer, profile. CRA + Redux + TypeScript.</p>
+            </article>
+            <article class="card">
+              <h3>portokalive-api</h3>
+              <p>Express + MongoDB — users, webhooks, api.video live stream provisioning.</p>
+            </article>
+            <article class="card">
+              <h3>portokalive-mobile</h3>
+              <p>React Native client — broadcast and watch on the go (Expo refresh planned).</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="container">
+        MIT · Eternal Flame ·
+        <a href="https://kevinmoemyintmyat.vercel.app">Kevin Moe Myint Myat</a>
+      </div>
+    </footer>
+  </body>
+</html>
