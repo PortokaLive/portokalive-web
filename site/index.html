@@ -4,17 +4,18 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>PortokaLive — Open-source live streaming platform</title>
-    <meta name="description" content="PortokaLive is an experimental open-source live streaming platform — web, API, and mobile clients powered by api.video. Reborn for the Eternal Flame portfolio by Kevin Moe Myint Myat." />
+    <meta name="description" content="PortokaLive is a creator-centric live streaming platform — web discovery, Express API, React Native broadcast, powered by api.video." />
     <meta name="author" content="Kevin Moe Myint Myat" />
-    <meta name="theme-color" content="#0a0a0a" />
+    <meta name="theme-color" content="#f8fafc" />
     <link rel="canonical" href="https://portokalive.vercel.app/" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <meta property="og:title" content="PortokaLive — Live streaming, open source" />
-    <meta property="og:description" content="Broadcast live streams with web, API, and mobile — api.video integration." />
+    <meta property="og:title" content="PortokaLive — Live streaming for creators" />
+    <meta property="og:description" content="Watch, discover, and broadcast — open-source streaming ecosystem." />
     <meta property="og:url" content="https://portokalive.vercel.app/" />
+    <meta property="og:type" content="website" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
@@ -22,51 +23,56 @@
       <div class="container header-inner">
         <a href="/" class="logo">Portoka<strong>Live</strong></a>
         <nav class="nav">
+          <a href="/discover">Discover</a>
           <a href="/docs">Docs</a>
-          <a href="https://github.com/PortokaLive/portokalive-web" rel="noopener">Web</a>
-          <a href="https://github.com/PortokaLive/portokalive-api" rel="noopener">API</a>
+          <a href="https://github.com/PortokaLive" rel="noopener">GitHub</a>
         </nav>
       </div>
     </header>
     <main>
       <section class="hero">
         <div class="container">
-          <span class="version-badge">Eternal Flame rebirth — Phase 1</span>
+          <span class="version-badge">Eternal Flame rebirth — 2026</span>
           <h1>Go live, <span class="accent">open source</span></h1>
           <p class="hero-lead">
-            Originally built in 2020–2024 as a full-stack streaming experiment — React web, Express API,
-            React Native mobile, and api.video integration. Reimagined with a modern portfolio landing.
+            A creator platform for broadcasting and discovery — web viewer, mobile RTMP broadcast,
+            and api.video infrastructure. Recovering the 2020 vision with modern product quality.
           </p>
           <p>
-            <a class="btn" href="/docs">Architecture docs</a>
-            <a class="btn btn-outline" href="https://github.com/PortokaLive">GitHub org</a>
+            <a class="btn" href="/discover">Explore live</a>
+            <a class="btn btn-outline" href="/docs">Architecture</a>
           </p>
         </div>
       </section>
       <section class="features">
         <div class="container">
-          <h2>Stack</h2>
+          <h2>Platform</h2>
           <div class="grid">
             <article class="card">
-              <h3>portokalive-web</h3>
-              <p>React SPA — auth, live grid, stream viewer, profile. CRA + Redux + TypeScript.</p>
+              <h3>Discover</h3>
+              <p>Creator channels, live badges, categories — demo catalog live now; API wiring next.</p>
+              <p><a href="/discover">Browse streams →</a></p>
             </article>
             <article class="card">
-              <h3>portokalive-api</h3>
-              <p>Express + MongoDB — users, webhooks, api.video live stream provisioning.</p>
+              <h3>Broadcast</h3>
+              <p>React Native mobile app — RTMP to api.video. Web broadcast planned (WebRTC or studio embed).</p>
             </article>
             <article class="card">
-              <h3>portokalive-mobile</h3>
-              <p>React Native client — broadcast and watch on the go (Expo refresh planned).</p>
+              <h3>API</h3>
+              <p>Express + MongoDB — user auth, stream provisioning. Migrating off Heroku to modern hosting.</p>
             </article>
           </div>
         </div>
       </section>
     </main>
     <footer class="site-footer">
-      <div class="container">
-        MIT · Eternal Flame ·
-        <a href="https://kevinmoemyintmyat.vercel.app">Kevin Moe Myint Myat</a>
+      <div class="container footer-inner">
+        <nav class="footer-nav">
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
+          <a href="mailto:hello@portokalive.app">Contact</a>
+        </nav>
+        <p>MIT · Eternal Flame · <a href="https://kevinmoemyintmyat.vercel.app">Kevin Moe Myint Myat</a></p>
       </div>
     </footer>
   </body>

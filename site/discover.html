@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Discover — PortokaLive</title>
+    <meta name="description" content="Browse live streams and creators on PortokaLive — demo catalog while API rebirth completes." />
+    <link rel="canonical" href="https://portokalive.vercel.app/discover" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="/" class="logo">Portoka<strong>Live</strong></a>
+        <nav class="nav">
+          <a href="/discover" aria-current="page">Discover</a>
+          <a href="/docs">Docs</a>
+          <a href="/privacy">Privacy</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="discover-main">
+      <div class="container">
+        <header class="discover-header">
+          <h1>Discover live</h1>
+          <p class="hero-lead">Demo catalog — platform feels alive while API migration completes.</p>
+        </header>
+
+        <section class="stats-row" id="stats-row"></section>
+
+        <section class="filter-row">
+          <button type="button" class="filter-chip active" data-filter="all">All</button>
+          <button type="button" class="filter-chip" data-filter="live">Live now</button>
+          <button type="button" class="filter-chip" data-filter="Tech">Tech</button>
+          <button type="button" class="filter-chip" data-filter="Wellness">Wellness</button>
+          <button type="button" class="filter-chip" data-filter="Education">Education</button>
+        </section>
+
+        <div class="creator-grid" id="creator-grid"></div>
+
+        <p class="demo-notice">
+          Demo content for rebirth showcase. Real streams require
+          <code>portokalive-api</code> + api.video keys. Broadcast via mobile app today.
+        </p>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <nav class="footer-nav">
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
+          <a href="mailto:hello@portokalive.app">Contact</a>
+        </nav>
+        <p>MIT · Eternal Flame · <a href="https://kevinmoemyintmyat.vercel.app">Kevin Moe Myint Myat</a></p>
+      </div>
+    </footer>
+
+    <script type="module">
+      import { demoCreators, demoStats } from "./demo-data.js";
+
+      const grid = document.getElementById("creator-grid");
+      const stats = document.getElementById("stats-row");
+      let filter = "all";
+
+      stats.innerHTML = `
+        <article class="stat-card"><strong>${demoStats.liveNow}</strong><span>Live now</span></article>
+        <article class="stat-card"><strong>${demoStats.creators}</strong><span>Creators</span></article>
+        <article class="stat-card"><strong>${demoStats.recordings}</strong><span>Recordings</span></article>
+        <article class="stat-card"><strong>${demoStats.categories}</strong><span>Categories</span></article>
+      `;
+
+      function render() {
+        const list = demoCreators.filter((c) => {
+          if (filter === "all") return true;
+          if (filter === "live") return c.live;
+          return c.category === filter;
+        });
+
+        grid.innerHTML = list.map((c) => `
+          <article class="creator-card ${c.live ? "is-live" : ""}" data-id="${c.id}">
+            <div class="thumb">
+              <span class="thumb-emoji">${c.avatar}</span>
+              ${c.live ? '<span class="live-pill">LIVE</span>' : '<span class="offline-pill">Offline</span>'}
+            </div>
+            <div class="creator-body">
+              <h3>${c.name}</h3>
+              <p class="handle">${c.handle}</p>
+              <p class="tagline">${c.tagline}</p>
+              <div class="creator-meta">
+                <span>${c.category}</span>
+                <span>${c.live ? c.viewers + " watching" : "Replay soon"}</span>
+              </div>
+            </div>
+          </article>
+        `).join("");
+      }
+
+      document.querySelectorAll(".filter-chip").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".filter-chip").forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          filter = btn.dataset.filter;
+          render();
+        });
+      });
+
+      render();
+    </script>
+  </body>
+</html>
